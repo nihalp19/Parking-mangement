@@ -12,8 +12,11 @@ const app = express()
 
 
 app.use(cors({
-    origin: ["http://localhost:5173/","https://parking-mangement.vercel.app/"]
-}))
+    origin: ["http://localhost:5173", "https://parking-mangement.vercel.app"], // ✅ No trailing slashes
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"], // ✅ Allow all standard HTTP methods
+    allowedHeaders: ["Content-Type", "Authorization"], // ✅ Allow necessary headers
+    credentials: true // ✅ If you're sending cookies or auth headers
+}));
 
 app.use(express.json())
 app.all("/", async (req, res) => {
